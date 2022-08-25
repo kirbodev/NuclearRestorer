@@ -61,7 +61,16 @@ main()
 
 client.on("interactionCreate", async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
-    if (!interaction.inGuild()) return;
+    if (!interaction.inGuild()) {
+        if (interaction.commandName !== "feedback") {
+            const notInGuildEmbed = new EmbedBuilder()
+                .setTitle("Something went wrong")
+                .setDescription("Hey there! You tried to use a guild-only command in DMs so I cancelled the command. The only command you can use in DMs is /feedback!")
+                .setColor("Red")
+                .setTimestamp()
+            return interaction.reply({ embeds: [notInGuildEmbed]})
+        }
+    }
     if (interaction.commandName === "feedback") {
         // Create Select Menu for type
         const feedbackType = new ActionRowBuilder()
