@@ -1,7 +1,18 @@
 # NuclearRestorer
-A discord bot which can remove damage caused by nukes/raids and protect you from channel spamming. The bot provides you with tools to fix your server in case anything happens such as:
-> Deleting all messages that have a certain keyphrase in them  
-> Deleting all channels that have a certain keyphrase in their name  
-> Bombing the server by deleting all channels (except for channels with a certain keyphrase in their name)  
+A bot that:
+- protects you from raids and nukes
+- helps you mass delete channels
+- helps you mass delete messages
 
-Suspected nukers are also kicked (if possible) and a message is sent to the server owner (or the server's default channel if the server owner's DMs are off) with details about the nuke channel, the person who made the channel and the actions automatically taken by the bot.
+### Nuke Protection
+NuclearRestorer helps protect you from nukes by alerting the server owner (or the default channel if they're unavailable) when a spam channel is made, who made it and what the channel name was. It also deletes the channel and attempts to kick the user if possible with the permissions that the bot has.
+
+### Server restoration commands
+ - **delete_messages** [keyword]
+*Delete messages in all channels that contain a specific keyword*
+- **delete_channels** [keyword]
+*Delete channels that contain a specfic keyword*
+- **bomb** [keyword]
+*Delete **all** channels except for channels that contain a specific keyword*
+### Feedback
+If you find a bug, would like to request a feature or anything else, use the **/feedback** command and you'll be able to select what type of message you want to send and be able to send your message.
