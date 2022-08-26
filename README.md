@@ -9,7 +9,8 @@ NuclearRestorer helps protect you from nukes by alerting the server owner (or th
 
 ### Server restoration commands
  - **delete_messages** [keyword]
-*Delete messages in all channels that contain a specific keyword*
+*Delete messages in all channels that contain a specific keyword*  
+<sub><sup>Note: This might be a little slow due to rate limits!<sup/><sub/>
 - **delete_channels** [keyword]
 *Delete channels that contain a specfic keyword*
 - **bomb** [keyword]
