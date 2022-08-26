@@ -49,7 +49,10 @@ async function main() {
                 .setDescription("The keyphrase of the channels you wish to exlude from deletion")
                 .setRequired(true)
         )
-        .toJSON()
+        .toJSON(),
+    new SlashCommandBuilder()
+        .setName("donate")
+        .setDescription("Provides you with a link in case you want to support me and my future projects!")
     ]
     try {
         await rest.put(Routes.applicationCommands("989853936246738984"), {
@@ -62,10 +65,10 @@ main()
 client.on("interactionCreate", async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
     if (!interaction.inGuild()) {
-        if (interaction.commandName !== "feedback") {
+        if (interaction.commandName !== "feedback" && interaction.commandName !== "donate") {
             const notInGuildEmbed = new EmbedBuilder()
                 .setTitle("Something went wrong")
-                .setDescription("Hey there! You tried to use a guild-only command in DMs so I cancelled the command. The only command you can use in DMs is /feedback!")
+                .setDescription("Hey there! You tried to use a guild-only command in DMs so I cancelled the command. The only commands you can use in DMs is /feedback and /donate!")
                 .setColor("Red")
                 .setTimestamp()
             return interaction.reply({ embeds: [notInGuildEmbed]})
@@ -327,6 +330,19 @@ client.on("interactionCreate", async (interaction) => {
         function checkName(channel) {
             return !(channel.name.includes(interaction.options._hoistedOptions[0].value));
         }
+    } else if (interaction.commandName === "donate") {
+        const donateEmbed = new EmbedBuilder()
+            .setTitle("Donate")
+            .setColor("Green")
+            .setDescription("Hey there! Thanks for considering donating to me! It really helps me out when someone donates since I'm an open source developer, you can buy me a coffee on ko-fi!")
+            .setFields([
+                {
+                    name: "Ko-fi",
+                    value: "[Click here](https://ko-fi.com/kirbodev/)"
+                }
+            ])
+            .setImage("https://c.tenor.com/6bUnLYb54jgAAAAC/thank-you-thanks.gif")
+        await interaction.reply({ embeds: [donateEmbed], ephemeral: true })
     }
 })
 
